@@ -1,0 +1,15 @@
+.menu {
+   padding-top: 0 !important;  
+}
+
+.menuItem {
+   transition: .1s;
+}
+
+.menuItem:hover {
+   background-color: rgb(208, 231, 219) !important;
+}
+.menuItem:focus {
+   background-color: rgb(116, 238, 154) !important;
+}
+
