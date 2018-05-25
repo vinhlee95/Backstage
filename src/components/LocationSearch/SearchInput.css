@@ -1,0 +1,27 @@
+.searchInput {
+   border: .5px solid lightgrey;
+   border-radius: 3px;
+   padding: 10px 0 10px 10px;
+   margin-top: 5px;
+   width: 100%;
+}
+
+.autocompleteDropdown {
+   width: 100%;
+   padding-left: 10px;
+}
+
+.item {
+}
+
+.activeSuggestionItem {
+   display: block;
+   width: 100%;
+   cursor: pointer;
+   border-radius: 3px; 
+   padding: 5px 0;
+   transition: .3s;
+}
+.activeSuggestionItem:hover {
+   background-color: rgb(152, 228, 152);   
+}
