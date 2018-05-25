@@ -3,9 +3,10 @@ import TextField from 'material-ui/TextField';
 import { green100 } from 'material-ui/styles/colors';
 import classes from './Input.css';
 
-const Input = ({hintText, floatingLabelText}) => {
+const Input = ({hintText, floatingLabelText, id, onChange}) => {
    return(
       <TextField
+         id={id}
          hintText={hintText}
          floatingLabelText = {floatingLabelText}
          style={{marginRight: 20}}
@@ -13,6 +14,8 @@ const Input = ({hintText, floatingLabelText}) => {
          underlineFocusStyle={styles.underlineFocusStyle}
          underlineStyle={styles.underlineStyle}
          inputStyle={{ marginTop: 10}}
+         onChange={onChange}
+         placeholder=""
       />
    );
 }

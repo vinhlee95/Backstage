@@ -23,7 +23,9 @@ class Profile extends Component {
 
             <h1>Kotipaikka</h1>
             <section className={classes.row}>
-               <Input hintText="Katuosoite" floatingLabelText="Katuosoite" />
+               <SearchInput 
+                  placeholder="Katuosoite"
+                  handleSelectLocation={(location) => this.setState({ location })} />
                <Input hintText="Asunto" floatingLabelText="Asunto" />
             </section>
 
@@ -31,9 +33,7 @@ class Profile extends Component {
                <Input hintText="Postinumero" floatingLabelText="Postinumero" />
                <Input hintText="Paikkakunta" floatingLabelText="Paikkakunta" />
             </section>
-            <SearchInput 
-               placeholder="Katuosoite"
-               handleSelectLocation={(location) => this.setState({ location })} />
+            
 
             <Map
               center={this.state.location}
