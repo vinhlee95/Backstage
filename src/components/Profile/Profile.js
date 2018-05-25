@@ -48,8 +48,9 @@ class Profile extends Component {
                label="Save your information" 
                backgroundColor={green200}
                icon={<DoneIcon />}
+               fullWidth
                style={{
-                  paddingTop: 10, paddingBottom: 10, marginBottom: 50, borderRadius: 5, backgroundColor: (green200), width: '90%'
+                  paddingTop: 10, paddingBottom: 10, marginBottom: 50, borderRadius: 5, backgroundColor: (green200)
                }} />
          </div>
       );

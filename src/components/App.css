@@ -11,4 +11,8 @@ h1 {
    .mainNav {
       display: none !important;
    }
+   .container {
+      display: flex;
+      flex-direction: column;
+   }
 }
