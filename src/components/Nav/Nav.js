@@ -17,7 +17,7 @@ const navData = [
    {
       name: 'Esiintyjät ja Esitykset',
       leftIcon: <PageIcon />,
-      path: '/performer'
+      path: '/products'
    },
    {
       name: 'Kalenteri',
