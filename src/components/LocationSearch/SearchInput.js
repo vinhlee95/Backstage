@@ -38,7 +38,10 @@ export default class AddressAutocomplete extends Component {
         }
       }
       // input.value = selectedPlace.name // Code injection risk (check doc)
-      input.value = `${selectedSuggest.street_number}, ${selectedSuggest.route}, ${selectedSuggest.locality}`
+      if(!selectedSuggest.street_number) {
+        selectedSuggest.street_number = '';
+      }
+      input.value = `${selectedSuggest.route} ${selectedSuggest.street_number}, ${selectedSuggest.locality}`
       const locationInLatLng = selectedPlace.geometry.location;
       //changeState
       this.setState({
