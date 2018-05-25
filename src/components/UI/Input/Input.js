@@ -3,7 +3,7 @@ import TextField from 'material-ui/TextField';
 import { green100 } from 'material-ui/styles/colors';
 import classes from './Input.css';
 
-const Input = ({hintText, floatingLabelText, id, onChange}) => {
+const Input = ({hintText, floatingLabelText, id, onChange, fullWidth}) => {
    return(
       <TextField
          id={id}
@@ -16,6 +16,7 @@ const Input = ({hintText, floatingLabelText, id, onChange}) => {
          inputStyle={{ marginTop: 10}}
          onChange={onChange}
          placeholder=""
+         fullWidth={fullWidth}
       />
    );
 }

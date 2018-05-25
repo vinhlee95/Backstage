@@ -36,9 +36,13 @@ class Profile extends Component {
             
 
             <Map
-              center={this.state.location}
-              zoom={14}
-              performanceRadius={this.state.performanceRadius}
+               center={this.state.location}
+               zoom={14}
+               performanceRadius={this.state.performanceRadius}
+            />
+            <Input
+               hintText="Change radius (km)" floatingLabelText="Change radius (km)"
+               onChange={(e) => this.setState({ performanceRadius: e.target.value })}
             />
             <RaisedButton 
                label="Save your information" 
