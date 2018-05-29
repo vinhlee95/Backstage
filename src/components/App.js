@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
 import Header from './Header/Header';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Nav from './Nav/Nav';
 import Profile from './Profile/Profile';
 import Auth from './Auth/Auth';
 import classes from './App.css';
+import { connect } from 'react-redux';
 
 const Dashboard = () => <h1>Dashboard</h1>
 const GigList = () => <h1>Gig List</h1>
@@ -19,12 +19,13 @@ class App extends Component {
    state = { isLogin: false }
    render() {
       if(!this.state.isLogin) {
-         return <Auth isLogin={this.state.isLogin} />;
+         return <Auth isLogin={this.state.isLogin} changeLoginStatus={() => this.setState({ isLogin: true })} />;
       }
+      console.log('Login' + this.state.isLogin)
       return (
          <Router>
             <div className="App">
-               <Header isLogin />
+               <Header isLogin accountInfo={this.props.email} />
                <div className={classes.container} >
                   <div className={classes.mainNav}>
                      <Nav />
@@ -44,4 +45,8 @@ class App extends Component {
    }
 }
 
-export default App;
+const mapStateToProps = ({auth}) => {
+   return { email: auth.email };
+};
+
+export default connect(mapStateToProps)(App);

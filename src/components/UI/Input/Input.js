@@ -1,7 +1,6 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 import { green100 } from 'material-ui/styles/colors';
-import classes from './Input.css';
 
 const Input = ({hintText, floatingLabelText, type, id, onChange }) => {
    return(

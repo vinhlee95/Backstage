@@ -4,7 +4,6 @@ import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import ProfileIcon from 'material-ui/svg-icons/social/person';
-import classes from './AccountButton.css';
 
 export default class AccountButton extends React.Component {
 
@@ -36,7 +35,7 @@ export default class AccountButton extends React.Component {
             <RaisedButton
                onClick={this.handleClick}
                icon={<ProfileIcon />}
-               label="Vinh Le"
+               label={this.props.accountInfo}
                buttonStyle={{ borderRadius: 10}}
                style={{backgroundColor: 'none'}}
             >

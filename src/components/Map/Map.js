@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import GoogleMapReact, { google, map } from 'google-map-react';
+import GoogleMapReact from 'google-map-react';
 import Circle from './Circle';
 import css from './Map.css';
 

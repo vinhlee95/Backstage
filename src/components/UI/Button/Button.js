@@ -1,14 +1,15 @@
 import React from 'react';
 import { RaisedButton } from 'material-ui';
-import classes from './Button.css';
 
 const Button = ({
       label,
       fullWidth,
-      backgroundColor
+      backgroundColor,
+      onClick
    }) => {
    return(
       <RaisedButton
+         onClick={onClick}
          label={label}
          fullWidth={fullWidth}
          backgroundColor={backgroundColor}
