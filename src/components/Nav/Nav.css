@@ -8,9 +8,9 @@
 }
 
 .menuItem:hover {
-   background-color: rgb(208, 231, 219) !important;
+   background-color: rgb(161, 216, 139) !important;
 }
 .menuItem:focus {
-   background-color: rgb(116, 238, 154) !important;
+   background-color: #86b554 !important;
 }
 

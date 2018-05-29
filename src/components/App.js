@@ -4,6 +4,7 @@ import Header from './Header/Header';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Nav from './Nav/Nav';
 import Profile from './Profile/Profile';
+import Auth from './Auth/Auth';
 import classes from './App.css';
 
 const Dashboard = () => <h1>Dashboard</h1>
@@ -15,11 +16,15 @@ const ProductList = () => <h1>Product List</h1>
 const Product = () => <h1>Product</h1>
 
 class App extends Component {
+   state = { isLogin: false }
    render() {
+      if(!this.state.isLogin) {
+         return <Auth isLogin={this.state.isLogin} />;
+      }
       return (
          <Router>
             <div className="App">
-               <Header />
+               <Header isLogin />
                <div className={classes.container} >
                   <div className={classes.mainNav}>
                      <Nav />

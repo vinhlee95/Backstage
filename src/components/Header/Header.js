@@ -4,12 +4,18 @@ import AccountButton from '../UI/AccountButton/AccountButton';
 import MenuIcon from '../UI/MenuIcon/MenuIcon';
 import classes from './Header.css';
 
-const Header = () => {
+const Header = (props) => {
+   let accountButton;
+   if(props.isLogin) {
+      accountButton = <AccountButton />
+   } else {
+      accountButton = null;
+   }
    return(
       <div>
          <AppBar  
             title="Gigle Backstage"
-            iconElementRight={<AccountButton />}
+            iconElementRight={accountButton}
             iconElementLeft={<MenuIcon />}
             className={classes.header}
          >
