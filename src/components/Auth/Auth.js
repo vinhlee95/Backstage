@@ -8,19 +8,6 @@ import firebase from 'firebase';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
-const data = [
-   {
-      label: 'login',
-      backgroundColor: '#88ea98',
-      buttonLabel: 'Login'
-   },
-   {
-      label: 'signup',
-      backgroundColor: '#88ea98',
-      buttonLabel: 'Signup'
-   },
-];
-
 class Auth extends Component {
    state = { email: '', password: '', error: '' };
 
@@ -36,23 +23,25 @@ class Auth extends Component {
       firebase.initializeApp(config);
    }
 
-   handleSubmit = (e, label) => {
-      e.preventDefault();
+   handleSignup = (e) => {
       const { email, password } = this.state;
-      if(label === 'signup') {
-         this.handleSignup(email, password);
-      }
-      return this.handleSignup(email, password)
-   }
-
-   handleSignup = (email, password) => {
       this.props.signup(
          email, password, 
          () => {this.changeLoginStatus()},
          (error) => {
-            console.log(error);
-            this.setState({ error })
+            this.setState({ error });
          },
+      );
+   }
+
+   handleLogin = (e) => {
+      const { email, password } = this.state;
+      this.props.login(
+         email, password,
+         () => this.changeLoginStatus(),
+         (error) => {
+            this.setState({ error });
+         }
       );
    }
 
@@ -61,6 +50,7 @@ class Auth extends Component {
    }
 
    render() {
+      // diaplay error message
       let emailErrorMessage = null;
       let passwordErrorMessage = null;
       const { error } = this.state;
@@ -76,24 +66,26 @@ class Auth extends Component {
 
          default:
       }
-      let tabs;
-      tabs = data.map((item, id) => {
-         return (
-            <Tab key={id} label={item.label} buttonStyle={{ backgroundColor: item.backgroundColor }} >
-               <Input hintText="Email" floatingLabelText="Email" onChange={e => this.setState({ email: e.target.value })} />
-               {emailErrorMessage}
-               <Input hintText="Password" floatingLabelText="Password" type="password" onChange={e=>this.setState({ password: e.target.value})} />
-               {passwordErrorMessage}
-               <Button label={item.buttonLabel} fullWidth backgroundColor="#88ea98" onClick={e => this.handleSubmit(e, item.buttonLabel)} />
-            </Tab>
-         );
-      });
+      
       return(
          <div>
             <Header hideMenuLeftIcon={true} />
             <Tabs
                className={classes.tabContainer} >
-               {tabs}
+               <Tab label="Login" buttonStyle={{ backgroundColor: '#88ea98' }} >
+                  <Input hintText="Email" floatingLabelText="Email" onChange={e => this.setState({ email: e.target.value })} />
+                  {emailErrorMessage}
+                  <Input hintText="Password" floatingLabelText="Password" type="password" onChange={e=>this.setState({ password: e.target.value})} />
+                  {passwordErrorMessage}
+                  <Button label='Login' fullWidth backgroundColor="#88ea98" onClick={e => this.handleLogin(e)} />
+               </Tab>
+               <Tab label="Signup" buttonStyle={{ backgroundColor: '#88ea98' }} >
+                  <Input hintText="Email" floatingLabelText="Email" onChange={e => this.setState({ email: e.target.value })} />
+                  {emailErrorMessage}
+                  <Input hintText="Password" floatingLabelText="Password" type="password" onChange={e=>this.setState({ password: e.target.value})} />
+                  {passwordErrorMessage}
+                  <Button label='Signup' fullWidth backgroundColor="#88ea98" onClick={e => this.handleSignup(e)} />
+               </Tab>
             </Tabs>
          </div>
       );

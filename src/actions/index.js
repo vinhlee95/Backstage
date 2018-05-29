@@ -15,3 +15,18 @@ export const signup = (email, password, callback, handleError) => async (dispatc
       handleError(error);
    }
 }
+
+export const login = (email, password, callback, handleError) => async (dispatch) => {
+   console.log('LOGGING IN');
+   try {
+      await firebase.auth().signInWithEmailAndPassword(email, password);
+      console.log(`User with email ${email} is logging in`);
+      callback();
+      dispatch({
+         type: SIGNUP,
+         payload: firebase.auth().currentUser.email
+      })
+   } catch(error) {
+      handleError(error);
+   }
+}
