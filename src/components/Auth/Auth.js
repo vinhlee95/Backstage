@@ -3,9 +3,23 @@ import Header from '../Header/Header';
 import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
 import { Tabs, Tab } from 'material-ui';
+import firebase from 'firebase';
 import classes from './Auth.css';
 
 class Auth extends Component {
+
+   componentWillMount() {
+      var config = {
+         apiKey: "AIzaSyBQKxPJo3KvbF3VHobpXbQpS-yB8hdCmcg",
+         authDomain: "gigs-2cb8b.firebaseapp.com",
+         databaseURL: "https://gigs-2cb8b.firebaseio.com",
+         projectId: "gigs-2cb8b",
+         storageBucket: "",
+         messagingSenderId: "936084268710"
+      };
+      firebase.initializeApp(config);
+   }
+
    render() {
       return(
          <div>
