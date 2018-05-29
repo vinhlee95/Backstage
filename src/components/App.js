@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import Header from './Header/Header';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Nav from './Nav/Nav';
+import DashBoard from './Dashboard/Dashboard';
 import Profile from './Profile/Profile';
 import Auth from './Auth/Auth';
 import classes from './App.css';
 import { connect } from 'react-redux';
 
-const Dashboard = () => <h1>Dashboard</h1>
 const GigList = () => <h1>Gig List</h1>
 const Gig = () => <h1>Your Gig</h1>
 const Schedule = () => <h1>Schedule</h1>
@@ -30,7 +30,7 @@ class App extends Component {
                   <div className={classes.mainNav}>
                      <Nav />
                   </div>
-                  <Route exact path="/" component={Dashboard} />
+                  <Route exact path="/" component={DashBoard} />
                   <Route path="/gigs" component={GigList} />
                   <Route path="/gigs/:gigId" component={Gig} />
                   <Route path="/products" component={ProductList} /> 
