@@ -3,11 +3,10 @@
    margin: 20px auto;
 }
 
-
-
-
-
-
+.errorMessage {
+   color: red;
+   font-size: 15px;
+}
 
 
 

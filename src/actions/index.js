@@ -1,7 +1,7 @@
 import { LOGIN, SIGNUP } from './types';
 import firebase from 'firebase';
 
-export const signup = (email, password, callback) => async (dispatch) => {
+export const signup = (email, password, callback, handleError) => async (dispatch) => {
    console.log('CREATING ACCCOUNT')
    try {
       await firebase.auth().createUserWithEmailAndPassword(email, password);
@@ -12,6 +12,6 @@ export const signup = (email, password, callback) => async (dispatch) => {
          payload: firebase.auth().currentUser.email
       });
    } catch(error) {
-      console.log(error);
+      handleError(error);
    }
 }

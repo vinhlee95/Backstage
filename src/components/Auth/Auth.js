@@ -22,7 +22,7 @@ const data = [
 ];
 
 class Auth extends Component {
-   state = { email: '', password: '' };
+   state = { email: '', password: '', error: '' };
 
    componentDidMount() {
       var config = {
@@ -46,9 +46,14 @@ class Auth extends Component {
    }
 
    handleSignup = (email, password) => {
-      this.props.signup(email, password, () => {
-         this.changeLoginStatus();
-      })
+      this.props.signup(
+         email, password, 
+         () => {this.changeLoginStatus()},
+         (error) => {
+            console.log(error);
+            this.setState({ error })
+         },
+      );
    }
 
    changeLoginStatus = () => {
@@ -56,12 +61,29 @@ class Auth extends Component {
    }
 
    render() {
+      let emailErrorMessage = null;
+      let passwordErrorMessage = null;
+      const { error } = this.state;
+      switch(error.code) {
+         case 'auth/invalid-email':
+         case 'auth/email-already-in-use':         
+         emailErrorMessage = <p className={classes.errorMessage}>{error.message}</p>;
+         break;
+
+         case 'auth/weak-password':
+         passwordErrorMessage = <p className={classes.errorMessage}>{error.message}</p>;
+         break;
+
+         default:
+      }
       let tabs;
       tabs = data.map((item, id) => {
          return (
             <Tab key={id} label={item.label} buttonStyle={{ backgroundColor: item.backgroundColor }} >
                <Input hintText="Email" floatingLabelText="Email" onChange={e => this.setState({ email: e.target.value })} />
+               {emailErrorMessage}
                <Input hintText="Password" floatingLabelText="Password" type="password" onChange={e=>this.setState({ password: e.target.value})} />
+               {passwordErrorMessage}
                <Button label={item.buttonLabel} fullWidth backgroundColor="#88ea98" onClick={e => this.handleSubmit(e, item.buttonLabel)} />
             </Tab>
          );
