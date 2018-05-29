@@ -30,3 +30,16 @@ export const login = (email, password, callback, handleError) => async (dispatch
       handleError(error);
    }
 }
+
+export const signout = (callback) => async (dispatch) => {
+   try {
+      await firebase.auth().signOut();
+      console.log('User is signing out');
+      dispatch({
+         type: 'SIGN_OUT'
+      });
+      callback();
+   } catch(error) {
+      console.log(error);
+   }
+}

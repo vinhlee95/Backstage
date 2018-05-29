@@ -11,17 +11,7 @@ import * as actions from '../../actions';
 class Auth extends Component {
    state = { email: '', password: '', error: '' };
 
-   componentDidMount() {
-      var config = {
-         apiKey: "AIzaSyBQKxPJo3KvbF3VHobpXbQpS-yB8hdCmcg",
-         authDomain: "gigs-2cb8b.firebaseapp.com",
-         databaseURL: "https://gigs-2cb8b.firebaseio.com",
-         projectId: "gigs-2cb8b",
-         storageBucket: "",
-         messagingSenderId: "936084268710"
-      };
-      firebase.initializeApp(config);
-   }
+   
 
    handleSignup = (e) => {
       const { email, password } = this.state;

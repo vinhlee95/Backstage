@@ -7,6 +7,7 @@ import Profile from './Profile/Profile';
 import Auth from './Auth/Auth';
 import classes from './App.css';
 import { connect } from 'react-redux';
+import firebase from 'firebase';
 
 const GigList = () => <h1>Gig List</h1>
 const Gig = () => <h1>Your Gig</h1>
@@ -17,11 +18,25 @@ const Product = () => <h1>Product</h1>
 
 class App extends Component {
    state = { isLogin: false }
+
+   componentWillMount() {
+      var config = {
+         apiKey: "AIzaSyBQKxPJo3KvbF3VHobpXbQpS-yB8hdCmcg",
+         authDomain: "gigs-2cb8b.firebaseapp.com",
+         databaseURL: "https://gigs-2cb8b.firebaseio.com",
+         projectId: "gigs-2cb8b",
+         storageBucket: "",
+         messagingSenderId: "936084268710"
+      };
+      firebase.initializeApp(config);
+   }
+
    render() {
-      if(!this.state.isLogin) {
+      if(!firebase.auth().currentUser) {
          return <Auth isLogin={this.state.isLogin} changeLoginStatus={() => this.setState({ isLogin: true })} />;
       }
       console.log('Login' + this.state.isLogin)
+      console.log(firebase.auth().currentUser)      
       return (
          <Router>
             <div className="App">

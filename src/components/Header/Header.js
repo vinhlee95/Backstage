@@ -7,7 +7,8 @@ import classes from './Header.css';
 const Header = (props) => {
    let accountButton;
    if(props.isLogin) {
-      accountButton = <AccountButton accountInfo={props.accountInfo} />
+      accountButton = <AccountButton 
+                        accountInfo={props.accountInfo} />
    } else {
       accountButton = null;
    }

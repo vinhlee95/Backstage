@@ -4,14 +4,22 @@ import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import ProfileIcon from 'material-ui/svg-icons/social/person';
+import { connect } from 'react-redux';
+import * as actions from '../../../actions';
 
-export default class AccountButton extends React.Component {
+class AccountButton extends React.Component {
 
    constructor(props) {
       super(props);
       this.state = {
          open: false,
       };
+   }
+
+   handleSignout = () => {
+      this.props.signout(() => {
+         console.log(this.props.history)
+      });
    }
 
    handleClick = (event) => {
@@ -48,10 +56,12 @@ export default class AccountButton extends React.Component {
                onRequestClose={this.handleRequestClose}
             >
                <Menu>
-                  <MenuItem primaryText="Logout" onClick={() => alert('Are you sure to do this?')} />
+                  <MenuItem primaryText="Logout" onClick={this.handleSignout} />
                </Menu>
             </Popover>
          </div>
       );
    }
 }
+
+export default connect(null, actions)(AccountButton);
