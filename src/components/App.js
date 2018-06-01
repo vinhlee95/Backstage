@@ -31,16 +31,20 @@ class App extends Component {
       firebase.initializeApp(config);
    }
 
+   componentWillReceiveProps(nextProps) {
+
+   }
+
    render() {
-      if(!firebase.auth().currentUser) {
+      if(!firebase.auth().currentUser || this.props.email === null) {
          return <Auth isLogin={this.state.isLogin} changeLoginStatus={() => this.setState({ isLogin: true })} />;
       }
       console.log('Login' + this.state.isLogin)
-      console.log(firebase.auth().currentUser)      
       return (
          <Router>
             <div className="App">
                <Header isLogin accountInfo={this.props.email} />
+
                <div className={classes.container} >
                   <div className={classes.mainNav}>
                      <Nav />

@@ -6,6 +6,7 @@ import MenuItem from 'material-ui/MenuItem';
 import ProfileIcon from 'material-ui/svg-icons/social/person';
 import { connect } from 'react-redux';
 import * as actions from '../../../actions';
+import firebase from 'firebase';
 
 class AccountButton extends React.Component {
 
@@ -17,9 +18,7 @@ class AccountButton extends React.Component {
    }
 
    handleSignout = () => {
-      this.props.signout(() => {
-         console.log(this.props.history)
-      });
+      firebase.auth().signOut()
    }
 
    handleClick = (event) => {

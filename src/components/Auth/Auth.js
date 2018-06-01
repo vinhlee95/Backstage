@@ -4,16 +4,17 @@ import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
 import { Tabs, Tab } from 'material-ui';
 import classes from './Auth.css';
-import firebase from 'firebase';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import Spinner from '../UI/Spinner/Spinner';
 
 class Auth extends Component {
-   state = { email: '', password: '', error: '' };
+   state = { email: '', password: '', error: '', isLoading: false };
 
    
 
    handleSignup = (e) => {
+      this.setState({ isLoading: true })                  
       const { email, password } = this.state;
       this.props.signup(
          email, password, 
@@ -25,6 +26,7 @@ class Auth extends Component {
    }
 
    handleLogin = (e) => {
+      this.setState({ isLoading: true })            
       const { email, password } = this.state;
       this.props.login(
          email, password,
@@ -33,6 +35,8 @@ class Auth extends Component {
             this.setState({ error });
          }
       );
+      // loading info user saved 
+      this.props.loadData();
    }
 
    changeLoginStatus = () => {
@@ -56,6 +60,9 @@ class Auth extends Component {
 
          default:
       }
+      // render spinner
+      let spinner;
+      this.state.isLoading ? spinner = <Spinner /> : spinner = null;
       
       return(
          <div>
@@ -63,18 +70,20 @@ class Auth extends Component {
             <Tabs
                className={classes.tabContainer} >
                <Tab label="Login" buttonStyle={{ backgroundColor: '#88ea98' }} >
-                  <Input hintText="Email" floatingLabelText="Email" onChange={e => this.setState({ email: e.target.value })} />
+                  <Input value={this.state.email} hintText="Email" floatingLabelText="Email" onChange={e => this.setState({ email: e.target.value })} />
                   {emailErrorMessage}
-                  <Input hintText="Password" floatingLabelText="Password" type="password" onChange={e=>this.setState({ password: e.target.value})} />
+                  <Input value={this.state.password} hintText="Password" floatingLabelText="Password" type="password" onChange={e=>this.setState({ password: e.target.value})} />
                   {passwordErrorMessage}
-                  <Button label='Login' fullWidth backgroundColor="#88ea98" onClick={e => this.handleLogin(e)} />
+                  { spinner }                  
+                  <Button label='Login' type="submit" fullWidth backgroundColor="#88ea98" onClick={e => this.handleLogin(e)} />
                </Tab>
                <Tab label="Signup" buttonStyle={{ backgroundColor: '#88ea98' }} >
-                  <Input hintText="Email" floatingLabelText="Email" onChange={e => this.setState({ email: e.target.value })} />
+                  <Input value={this.state.email} hintText="Email" floatingLabelText="Email" onChange={e => this.setState({ email: e.target.value })} />
                   {emailErrorMessage}
-                  <Input hintText="Password" floatingLabelText="Password" type="password" onChange={e=>this.setState({ password: e.target.value})} />
+                  <Input value={this.state.password} hintText="Password" floatingLabelText="Password" type="password" onChange={e=>this.setState({ password: e.target.value})} />
                   {passwordErrorMessage}
-                  <Button label='Signup' fullWidth backgroundColor="#88ea98" onClick={e => this.handleSignup(e)} />
+                  { spinner }                  
+                  <Button label='Signup' type="submit" fullWidth backgroundColor="#88ea98" onClick={e => this.handleSignup(e)} />
                </Tab>
             </Tabs>
          </div>

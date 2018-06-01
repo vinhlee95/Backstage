@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import classes from './Profile.css';
+import firebase from 'firebase';
+import { connect } from 'react-redux';
+import * as actions from '../../actions'
 import Input from '../UI/Input/Input';
 import Map from '../Map/Map';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -7,18 +10,38 @@ import { green200 } from 'material-ui/styles/colors';
 import DoneIcon from 'material-ui/svg-icons/action/done';
 import SearchInput from '../LocationSearch/SearchInput';
 
+
 class Profile extends Component {
    state = {
       performanceRadius: '',
+      firstName: this.props.firstName ? this.props.firstName : '',
+      lastName: this.props.lastName ? this.props.lastName : '',
+   }
+
+   handleSaveInfo = () => {
+      const { firstName, lastName } = this.state;
+      this.props.saveData(firstName, lastName);
    }
 
    render() {   
+      // let firstName = null; let lastName = null;
+      // if(this.props.firstName && this.props.lastName) {
+      //    firstName = this.props.firstName;
+      //    lastName = this.props.lastName;
+      // }
+      console.log(firebase.auth().currentUser)
       return(
          <div className={classes.container}>
             <h1>Käyttäjätiedot:</h1>
             <section className={classes.row}>
-               <Input hintText="Etunimi" floatingLabelText = "Etunimi" />
-               <Input hintText="Sukunimi" floatingLabelText = "Sukunimi" />
+               <Input 
+                  value={this.state.firstName} 
+                  hintText="Etunimi" floatingLabelText = "Etunimi" 
+                  onChange={e => this.setState({ firstName: e.target.value })}/>
+               <Input 
+                  value={this.state.lastName}
+                  hintText="Sukunimi" floatingLabelText = "Sukunimi" 
+                  onChange={e => this.setState({ lastName: e.target.value })} />
             </section>
 
             <h1>Kotipaikka</h1>
@@ -45,6 +68,7 @@ class Profile extends Component {
                onChange={(e) => this.setState({ performanceRadius: e.target.value })}
             />
             <RaisedButton 
+               onClick={this.handleSaveInfo}
                label="Save your information" 
                backgroundColor={green200}
                icon={<DoneIcon />}
@@ -57,5 +81,11 @@ class Profile extends Component {
    }  
 }
 
+const mapStateToProps = ({data}) => {
+   return {
+      firstName: data.firstName,
+      lastName: data.lastName
+   }
+}
 
-export default Profile;
+export default connect(mapStateToProps,actions)(Profile);

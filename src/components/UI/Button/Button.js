@@ -5,10 +5,12 @@ const Button = ({
       label,
       fullWidth,
       backgroundColor,
-      onClick
+      onClick,
+      type
    }) => {
    return(
       <RaisedButton
+         type={type}
          onClick={onClick}
          label={label}
          fullWidth={fullWidth}
