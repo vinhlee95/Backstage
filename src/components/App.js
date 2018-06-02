@@ -17,39 +17,33 @@ const ProductList = () => <h1>Product List</h1>
 const Product = () => <h1>Product</h1>
 
 class App extends Component {
-   state = { isLogin: false }
+   state = { isLogin: false, user: null }
 
-   componentWillMount() {
-      var config = {
-         apiKey: "AIzaSyBQKxPJo3KvbF3VHobpXbQpS-yB8hdCmcg",
-         authDomain: "gigs-2cb8b.firebaseapp.com",
-         databaseURL: "https://gigs-2cb8b.firebaseio.com",
-         projectId: "gigs-2cb8b",
-         storageBucket: "",
-         messagingSenderId: "936084268710"
-      };
-      firebase.initializeApp(config);
-   }
-
-   componentWillReceiveProps(nextProps) {
-
+   componentDidMount() {
+      firebase.auth().onAuthStateChanged(user => {
+         if(user) {
+            console.log(user)
+            this.setState({ isLogin: true, user })
+         }
+      });
    }
 
    render() {
-      if(!firebase.auth().currentUser || this.props.email === null) {
-         return <Auth isLogin={this.state.isLogin} changeLoginStatus={() => this.setState({ isLogin: true })} />;
-      }
-      console.log('Login' + this.state.isLogin)
+      // console.log(this.state.isLogin)
+      let auth;
+      if(!this.state.isLogin) {
+         return auth = <Auth changeLoginStatus={() => this.setState({ isLogin: true })} />;
+      } 
       return (
          <Router>
             <div className="App">
-               <Header isLogin accountInfo={this.props.email} />
-
+               <Header isLogin accountInfo={this.state.user ? this.state.user.email : null} />
                <div className={classes.container} >
                   <div className={classes.mainNav}>
                      <Nav />
                   </div>
                   <Route exact path="/" component={DashBoard} />
+                  <Route path="/login" component={auth} />
                   <Route path="/gigs" component={GigList} />
                   <Route path="/gigs/:gigId" component={Gig} />
                   <Route path="/products" component={ProductList} /> 

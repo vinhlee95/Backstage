@@ -18,17 +18,17 @@ class Profile extends Component {
       lastName: this.props.lastName ? this.props.lastName : '',
    }
 
+   componentWillUpdate() {
+      this.props.loadData();
+   }
+
    handleSaveInfo = () => {
       const { firstName, lastName } = this.state;
       this.props.saveData(firstName, lastName);
    }
 
    render() {   
-      // let firstName = null; let lastName = null;
-      // if(this.props.firstName && this.props.lastName) {
-      //    firstName = this.props.firstName;
-      //    lastName = this.props.lastName;
-      // }
+      console.log(this.props.history)
       console.log(firebase.auth().currentUser)
       return(
          <div className={classes.container}>

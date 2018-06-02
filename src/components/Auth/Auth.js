@@ -30,13 +30,16 @@ class Auth extends Component {
       const { email, password } = this.state;
       this.props.login(
          email, password,
-         () => this.changeLoginStatus(),
+         () => {
+            this.changeLoginStatus();
+            this.props.loadData();
+         },
          (error) => {
             this.setState({ error });
          }
       );
       // loading info user saved 
-      this.props.loadData();
+      // this.props.loadData();
    }
 
    changeLoginStatus = () => {
