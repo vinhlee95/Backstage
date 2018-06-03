@@ -20,7 +20,7 @@ class AccountButton extends React.Component {
 
    handleSignout = () => {
       firebase.auth().signOut();
-      window.location.reload();
+      window.location.href="/";
    }
 
    handleClick = (event) => {

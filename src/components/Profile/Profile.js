@@ -90,7 +90,7 @@ class Profile extends Component {
             <Alert
                isAlertShow = {this.state.isAlertShow}
                message="Successfully saved"
-               autoHideDuration="3000"
+               autoHideDuration={3000}
                onRequestClose={this.handleRequestClose} />
          </div>
       );
