@@ -1,6 +1,5 @@
 import {
    SIGNUP,
-   SIGNOUT
 } from './types';
 import firebase from 'firebase';
 
@@ -32,17 +31,5 @@ export const login = (email, password, callback, handleError) => async (dispatch
       })
    } catch (error) {
       handleError(error);
-   }
-}
-
-export const signout = () => async (dispatch) => {
-   try {
-      await firebase.auth().signOut();
-      dispatch({
-         type: 'SIGN_OUT',
-         payload: firebase.auth().currentUser
-      });
-   } catch (error) {
-      console.log(error);
    }
 }

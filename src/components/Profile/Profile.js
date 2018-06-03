@@ -9,6 +9,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { green200 } from 'material-ui/styles/colors';
 import DoneIcon from 'material-ui/svg-icons/action/done';
 import SearchInput from '../LocationSearch/SearchInput';
+import Alert from '../UI/Alert/Alert';
 
 
 class Profile extends Component {
@@ -16,6 +17,7 @@ class Profile extends Component {
       performanceRadius: '',
       firstName: this.props.firstName ? this.props.firstName : '',
       lastName: this.props.lastName ? this.props.lastName : '',
+      isAlertShow: false,
    }
 
    componentWillUpdate() {
@@ -24,8 +26,17 @@ class Profile extends Component {
 
    handleSaveInfo = () => {
       const { firstName, lastName } = this.state;
-      this.props.saveData(firstName, lastName);
+      this.props.saveData(firstName, lastName,
+         () => this.setState({ isAlertShow: true })
+      );
    }
+
+   handleRequestClose = () => {
+      this.setState({
+         isAlertShow: false,
+      });
+   };
+
 
    render() {   
       console.log(this.props.history)
@@ -76,6 +87,11 @@ class Profile extends Component {
                style={{
                   paddingTop: 10, paddingBottom: 10, marginBottom: 50, borderRadius: 5, backgroundColor: (green200)
                }} />
+            <Alert
+               isAlertShow = {this.state.isAlertShow}
+               message="Successfully saved"
+               autoHideDuration="3000"
+               onRequestClose={this.handleRequestClose} />
          </div>
       );
    }  
