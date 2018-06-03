@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import classes from './Profile.css';
-import firebase from 'firebase';
 import { connect } from 'react-redux';
 import * as actions from '../../actions'
 import Input from '../UI/Input/Input';
@@ -20,7 +19,13 @@ class Profile extends Component {
       isAlertShow: false,
    }
 
-   componentWillUpdate() {
+   componentDidUpdate() {
+      console.log('Component updated');
+      this.props.loadData();
+   }
+
+   componentWillMount() {
+      console.log('Component will mount');         
       this.props.loadData();
    }
 
@@ -39,8 +44,6 @@ class Profile extends Component {
 
 
    render() {   
-      console.log(this.props.history)
-      console.log(firebase.auth().currentUser)
       return(
          <div className={classes.container}>
             <h1>Käyttäjätiedot:</h1>

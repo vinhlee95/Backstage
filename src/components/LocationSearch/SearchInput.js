@@ -57,7 +57,7 @@ export default class AddressAutocomplete extends Component {
   _handleChange = (event, value) => this.setState({ value })
 
   render () {
-    console.log(this.state.location)
+    // console.log(this.state.location)
     return (
       <Input
         id='addressAutocompleteField'

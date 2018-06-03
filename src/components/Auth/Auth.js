@@ -72,7 +72,10 @@ class Auth extends Component {
             <Header hideMenuLeftIcon={true} />
             <Tabs
                className={classes.tabContainer} >
-               <Tab label="Login" buttonStyle={{ backgroundColor: '#88ea98' }} >
+               <Tab 
+                  label="Login" 
+                  buttonStyle={{ backgroundColor: '#88ea98' }}>
+
                   <Input value={this.state.email} hintText="Email" floatingLabelText="Email" onChange={e => this.setState({ email: e.target.value })} />
                   {emailErrorMessage}
                   <Input value={this.state.password} hintText="Password" floatingLabelText="Password" type="password" onChange={e=>this.setState({ password: e.target.value})} />

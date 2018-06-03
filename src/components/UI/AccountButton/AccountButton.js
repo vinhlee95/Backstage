@@ -7,7 +7,6 @@ import ProfileIcon from 'material-ui/svg-icons/social/person';
 import { connect } from 'react-redux';
 import * as actions from '../../../actions';
 import firebase from 'firebase';
-import Auth from '../../Auth/Auth';
 
 class AccountButton extends React.Component {
 

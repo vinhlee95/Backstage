@@ -13,7 +13,7 @@ export default class Map extends Component {
 	}
 	
 	mapChanged(data){
-		console.log('Map changed:',data);
+		// console.log('Map changed:',data);
 		this.setState({ zoom: data.zoom });
 	}
 	
