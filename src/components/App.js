@@ -9,6 +9,7 @@ import classes from './App.css';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 
+
 const GigList = () => <h1>Gig List</h1>
 const Gig = () => <h1>Your Gig</h1>
 const Schedule = () => <h1>Schedule</h1>
